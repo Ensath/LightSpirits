@@ -1,7 +1,9 @@
-
 Copyright (c) 2016 Noah Freed
 
-This program is available under the "zlib license". Please see COPYING.
+This program is available under the "zlib license". Please see the file COPYING.
+
+This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check it out at http://www.willusher.io/pages/sdl2/.
+
 
 Build information
 
