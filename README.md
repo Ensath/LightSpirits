@@ -7,7 +7,7 @@ This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check 
 
 Build information
 
--Currently just the readme. Still need to incorporate game engine. Planning to use SDL.
+-Based on SDL. Generates a window and lets the user change a circle's color based on number key presses.
 
 
 
