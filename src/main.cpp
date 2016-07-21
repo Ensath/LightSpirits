@@ -101,8 +101,8 @@ int main(int, char**){
 		SDL_Quit();
 		return 1;
 	}
-	SDL_Texture *player = loadTexture(resPath + "Margery_Limited/Margery_Idle Left_0.png", renderer);
-	SDL_Texture *pright = loadTexture(resPath + "Margery_Limited/Margery_Idle Right_0.png", renderer);
+//	SDL_Texture *player = loadTexture(resPath + "Aiko_SpriteSheet.png", renderer);
+//	SDL_Texture *pright = loadTexture(resPath + "Margery_Limited/Margery_Idle Right_0.png", renderer);
 
 	//iW and iH are the clip width and height
 	//We'll be drawing only clips so get a center position for the w/h of a clip
@@ -122,7 +122,7 @@ int main(int, char**){
 	}
 	//Specify a default clip to start with
 	int useClip = 0;
-	int pClip = 1;
+//	int pClip = 1;
 
 	SDL_Event e;
 	bool quit = false;
@@ -137,25 +137,31 @@ int main(int, char**){
 				switch (e.key.keysym.sym){
 					case SDLK_1:
 					case SDLK_KP_1:
-					case SDLK_UP:
 						useClip = 0;
 						break;
 					case SDLK_2:
 					case SDLK_KP_2:
-					case SDLK_DOWN:
 						useClip = 1;
 						break;
 					case SDLK_3:
 					case SDLK_KP_3:
-					case SDLK_LEFT:
 						useClip = 2;
 						break;
 					case SDLK_4:
 					case SDLK_KP_4:
 						useClip = 3;
 						break;
+					case SDLK_UP:
+						y -= 1;
+						break;
+					case SDLK_DOWN:
+						y += 1;
+						break;
+					case SDLK_LEFT:
+						x -= 1;
+						break;
 					case SDLK_RIGHT:
-						pClip = 0;
+						x += 1;
 						break;
 					case SDLK_ESCAPE:
 						quit = true;
@@ -169,15 +175,15 @@ int main(int, char**){
 		SDL_RenderClear(renderer);
 		//Draw the image
 		renderTexture(image, renderer, x, y, &clips[useClip]);
-		renderTexture(player, renderer, x, y);
-		renderTexture(pright, renderer, x, y, &clips[pClip]);
+//		renderTexture(player, renderer, x, y);
+//		renderTexture(pright, renderer, x, y, &clips[pClip]);
 		//Update the screen
 		SDL_RenderPresent(renderer);
 	}
 	//Clean up
 	cleanup(image, renderer, window);
-	cleanup(player, renderer, window);
-	cleanup(pright, renderer, window);
+//	cleanup(player, renderer, window);
+//	cleanup(pright, renderer, window);
 	IMG_Quit();
 	SDL_Quit();
 
