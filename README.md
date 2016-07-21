@@ -4,6 +4,8 @@ This program is available under the "zlib license". Please see the file COPYING.
 
 This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check it out at http://www.willusher.io/pages/sdl2/.
 
+Sprites for this program found on opengameart.org. The player character uses the "Margery Limited" sprite set by software_atelier.
+
 
 Build information
 
