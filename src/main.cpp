@@ -111,10 +111,11 @@ int main(int, char**){
 	int pW = 24, pH = 26;
 	int px = SCREEN_WIDTH / 2 - pW/ 2;
 	int py = SCREEN_HEIGHT / 2 - pH / 2;
+	int pyinit = py;
 
 	//Setup the clips for our image
 	SDL_Rect clips[4];
-	SDL_Rect pclips[4];
+	SDL_Rect pclips[18];
 	//Since our clips our uniform in size we can generate a list of their
 	//positions using some math (the specifics of this are covered in the lesson)
 	for (int i = 0; i < 4; ++i){
@@ -123,7 +124,7 @@ int main(int, char**){
 		clips[i].w = iW;
 		clips[i].h = iH;
 	}
-	for (int i = 0; i < 4; ++i){
+	for (int i = 0; i < 18; ++i){
                 pclips[i].x = i % 6 * pW;
                 pclips[i].y = i / 6 * pH;
                 pclips[i].w = pW;
@@ -135,6 +136,8 @@ int main(int, char**){
 
 	SDL_Event e;
 	bool quit = false;
+	bool pFaceRight = false;
+	bool pAerial = false;
 	while (!quit){
 		//Event Polling
 		while (SDL_PollEvent(&e)){
@@ -162,16 +165,18 @@ int main(int, char**){
 						break;
 					case SDLK_UP:
 						py -= 1;
+						if (py < pyinit) { pAerial = true;}
 						break;
 					case SDLK_DOWN:
 						py += 1;
+						if (py >= pyinit) { pAerial = false;}
 						break;
 					case SDLK_LEFT:
-						pClip = 0;
+						pFaceRight = false;
 						px -= 1;
 						break;
 					case SDLK_RIGHT:
-						pClip = 2;
+						pFaceRight = true;
 						px += 1;
 						break;
 					case SDLK_ESCAPE:
@@ -186,6 +191,19 @@ int main(int, char**){
 		SDL_RenderClear(renderer);
 		//Draw the image
 		renderTexture(image, renderer, x, y, &clips[useClip]);
+		if (pFaceRight) {
+			if (pAerial) {
+				pClip = 5;
+			} else {
+				pClip = 2;
+			}	
+		} else {
+			if (pAerial) {
+				pClip = 4;
+			} else {
+				pClip = 0;
+			}
+		}
 		renderTexture(player, renderer, px, py, &pclips[pClip]);
 		//Update the screen
 		SDL_RenderPresent(renderer);
