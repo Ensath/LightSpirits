@@ -138,6 +138,8 @@ int main(int, char**){
 	bool quit = false;
 	bool pFaceRight = false;
 	bool pAerial = false;
+	int pVelX = 0;
+	int pVelY = 0;
 	while (!quit){
 		//Event Polling
 		while (SDL_PollEvent(&e)){
@@ -145,7 +147,7 @@ int main(int, char**){
 				quit = true;
 			}
 			//Use number input to select which clip should be drawn
-			if (e.type == SDL_KEYDOWN){
+			if (e.type == SDL_KEYDOWN && e.key.repeat == 0){
 				switch (e.key.keysym.sym){
 					case SDLK_1:
 					case SDLK_KP_1:
@@ -164,20 +166,19 @@ int main(int, char**){
 						useClip = 3;
 						break;
 					case SDLK_UP:
-						py -= 1;
-						if (py < pyinit) { pAerial = true;}
+						pVelY -= 2;
 						break;
 					case SDLK_DOWN:
-						py += 1;
+						pVelY += 1;
 						if (py >= pyinit) { pAerial = false;}
 						break;
 					case SDLK_LEFT:
 						pFaceRight = false;
-						px -= 1;
+						pVelX -= 1;
 						break;
 					case SDLK_RIGHT:
 						pFaceRight = true;
-						px += 1;
+						pVelX += 1;
 						break;
 					case SDLK_ESCAPE:
 						quit = true;
@@ -186,11 +187,47 @@ int main(int, char**){
 						break;
 				}
 			}
+			else if (e.type == SDL_KEYUP && e.key.repeat == 0){
+				switch (e.key.keysym.sym){
+					case SDLK_UP:
+						pVelY += 2;
+						break;
+					case SDLK_DOWN:
+						pVelY -= 1;
+						break;
+					case SDLK_LEFT:
+						pVelX += 1;
+						break;
+					case SDLK_RIGHT:
+						pVelX -= 1;
+						break;
+				}
+			}
 		}
 		//Rendering
 		SDL_RenderClear(renderer);
 		//Draw the image
 		renderTexture(image, renderer, x, y, &clips[useClip]);
+		//Update position
+		px += pVelX;
+		py += pVelY;
+		//Fall
+		py += 1;
+		//Avoid entering the ground
+		if (py > pyinit) {
+			py = pyinit;
+		}
+		//Identify position and facing
+		if (pVelX > 0) {
+			pFaceRight = true;
+		} else if (pVelX < 0) {
+			pFaceRight = false;
+		}
+		if (py < pyinit) { 
+			pAerial = true; 
+		} else { 
+			pAerial = false; 
+		}
 		if (pFaceRight) {
 			if (pAerial) {
 				pClip = 5;
@@ -204,6 +241,7 @@ int main(int, char**){
 				pClip = 0;
 			}
 		}
+		//Draw the player
 		renderTexture(player, renderer, px, py, &pclips[pClip]);
 		//Update the screen
 		SDL_RenderPresent(renderer);
