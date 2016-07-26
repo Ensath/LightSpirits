@@ -9,11 +9,15 @@ Sprites for this program found on opengameart.org. The player character uses the
 
 Build information
 
--Based on SDL. Generates a window and lets the user change a circle's color based on number key presses.
+-Based on SDL. Generates a window and lets the user change a circle's color based on number key presses. Lets the user move a character using the arrow keys.
+
+-To run, make sure SDL 2.0 and SDL_image 2.0 are installed, then modify the "SDL_INCLUDE" line in the Makefile to point to SDL 2.0 and to the include folder in this directory.
 
 
 
 User information
+
+-Change the color of the circle by pressing 1 through 4. Move the girl around with the arrow keys. Hit Escape to exit, or just close the window.
 
 -Feel free to visit here for updates on the project!
 
