@@ -142,7 +142,7 @@ int main(int, char**){
 	//Specify a default clip to start with
 	int useClip = 0;
 	int pClip = 2;
-	int gClip = 3;
+	int gClip = 0;
 
 	SDL_Event e;
 	bool quit = false;
@@ -150,6 +150,7 @@ int main(int, char**){
 	bool pAerial = false;
 	int pVelX = 0;
 	int pVelY = 0;
+	int gVelX = 1;
 	while (!quit){
 		//Event Polling
 		while (SDL_PollEvent(&e)){
@@ -253,6 +254,16 @@ int main(int, char**){
 		}
 		//Draw the player
 		renderTexture(player, renderer, px, py, &pclips[pClip]);
+		//Update grue position, direction
+		gx += gVelX;
+		if (gx > 500) { 
+			gVelX = -gVelX; 
+			gClip = 2;
+		}
+		if (gx < 100) {
+			gVelX = -gVelX;
+			gClip = 0;
+		}
 		//Draw the grue
 		renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
 		//Update the screen
