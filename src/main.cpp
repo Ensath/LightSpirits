@@ -102,6 +102,7 @@ int main(int, char**){
 		return 1;
 	}
 	SDL_Texture *player = loadTexture(resPath + "LayeredSprites.png", renderer);
+	SDL_Texture *grue = loadTexture(resPath + "Grue.png", renderer);
 
 	//iW and iH are the clip width and height
 	//We'll be drawing only clips so get a center position for the w/h of a clip
@@ -109,13 +110,17 @@ int main(int, char**){
 	int x = SCREEN_WIDTH / 2 - iW / 2;
 	int y = SCREEN_HEIGHT / 2 - iH / 2;
 	int pW = 24, pH = 26;
-	int px = SCREEN_WIDTH / 2 - pW/ 2;
+	int px = SCREEN_WIDTH / 2 - pW / 2 - 100;
 	int py = SCREEN_HEIGHT / 2 - pH / 2;
 	int pyinit = py;
+	int gW = 56, gH = 71;
+	int gx = SCREEN_WIDTH / 2 - gW / 2 + 100;
+	int gy = SCREEN_HEIGHT / 2 - gH / 2;
 
 	//Setup the clips for our image
 	SDL_Rect clips[4];
 	SDL_Rect pclips[18];
+	SDL_Rect gclips[4];
 	//Since our clips our uniform in size we can generate a list of their
 	//positions using some math (the specifics of this are covered in the lesson)
 	for (int i = 0; i < 4; ++i){
@@ -123,6 +128,10 @@ int main(int, char**){
 		clips[i].y = i % 2 * iH;
 		clips[i].w = iW;
 		clips[i].h = iH;
+		gclips[i].x = i % 2 * gW;
+		gclips[i].y = i / 2 * gH;
+		gclips[i].w = gW;
+		gclips[i].h = gH;
 	}
 	for (int i = 0; i < 18; ++i){
                 pclips[i].x = i % 6 * pW;
@@ -132,11 +141,12 @@ int main(int, char**){
         }
 	//Specify a default clip to start with
 	int useClip = 0;
-	int pClip = 0;
+	int pClip = 2;
+	int gClip = 3;
 
 	SDL_Event e;
 	bool quit = false;
-	bool pFaceRight = false;
+	bool pFaceRight = true;
 	bool pAerial = false;
 	int pVelX = 0;
 	int pVelY = 0;
@@ -243,6 +253,8 @@ int main(int, char**){
 		}
 		//Draw the player
 		renderTexture(player, renderer, px, py, &pclips[pClip]);
+		//Draw the grue
+		renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
 		//Update the screen
 		SDL_RenderPresent(renderer);
 	}
