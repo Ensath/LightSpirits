@@ -4,7 +4,9 @@ This program is available under the "zlib license". Please see the file COPYING.
 
 This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check it out at http://www.willusher.io/pages/sdl2/.
 
-Sprites for this program found on opengameart.org. The player character uses the "Margery Limited" sprite set by software_atelier.
+Sprites for this program found on opengameart.org. 
+The player character uses the "Margery Limited" sprite set by software_atelier.
+The enemies use the "16x16, 16x24, 32x32 rpg enemies--updated" sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0: https://creativecommons.org/licenses/by/3.0/.
 
 
 Build information
