@@ -15,8 +15,11 @@ Build information
 
 -Based on SDL. Generates a window and lets the user change a circle's color based on number key presses. Lets the user move a character using the arrow keys.
 
--To run, make sure SDL 2.0 and SDL_image 2.0 are installed, then modify the "SDL_INCLUDE" line in the Makefile to point to SDL 2.0 and to the include folder in this directory.
-
+-To run:
+Make sure SDL 2.0 and SDL_image 2.0 are installed, then modify the "SDL_INCLUDE" line in the Makefile to point to SDL 2.0 and to the include folder in this directory.
+Then run "make clean", followed by "make".
+You can install SDL 2.0 with the command "sudo apt-get install libsdl2-dev", or download it from https://www.libsdl.org/download-2.0.php. 
+You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-image-dev", or download it from https://www.libsdl.org/projects/SDL_image/.
 
 
 User information
