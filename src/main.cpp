@@ -156,12 +156,13 @@ int main(int, char**){
 	int useClip = 0;
 	int pClip = 2;
 	int gClip = 0;
-	int bClip = 1;
+	int bClip = 0;
 
 	SDL_Event e;
 	bool quit = false;
 	bool pFaceRight = true;
 	bool pAerial = false;
+	bool beamActive = false;
 	int pVelX = 0;
 	int pVelY = 0;
 	int gVelX = 1;
@@ -205,6 +206,9 @@ int main(int, char**){
 						pFaceRight = true;
 						pVelX += 1;
 						break;
+					case SDLK_SPACE:
+						beamActive = true;
+						break;
 					case SDLK_ESCAPE:
 						quit = true;
 						break;
@@ -225,6 +229,9 @@ int main(int, char**){
 						break;
 					case SDLK_RIGHT:
 						pVelX -= 1;
+						break;
+					case SDLK_SPACE:
+						beamActive = false;
 						break;
 				}
 			}
@@ -280,7 +287,18 @@ int main(int, char**){
 		}
 		//Draw the grue
 		renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
-		//Draw the beam
+		//Draw the beam if active, positioned in front of the player
+		if (beamActive) {
+			bClip = 1;
+		} else {
+			bClip = 0;
+		}
+		by = py + pH/2 - bH/2;
+		if (pFaceRight) {
+			bx = px + pW;
+		} else {
+			bx = px - bW + pW;
+		}
 		renderTexture(beam, renderer, bx, by, &bclips[bClip]);
 		//Update the screen
 		SDL_RenderPresent(renderer);
@@ -288,6 +306,8 @@ int main(int, char**){
 	//Clean up
 	cleanup(image, renderer, window);
 	cleanup(player, renderer, window);
+	cleanup(grue, renderer, window);
+	cleanup(beam, renderer, window);
 	IMG_Quit();
 	SDL_Quit();
 
