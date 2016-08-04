@@ -46,6 +46,7 @@ SDL_Texture* loadTexture(const std::string &file, SDL_Renderer *ren){
 void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, SDL_Rect dst, SDL_Rect *clip = nullptr){
 	SDL_RenderCopy(ren, tex, clip, &dst);
 }
+
 /*
  * Draw an SDL_Texture to an SDL_Renderer at position x, y, preserving
  * the texture's width and height and taking a clip of the texture if desired
@@ -118,7 +119,7 @@ int main(int, char**){
 	int gx = SCREEN_WIDTH / 2 - gW / 2 + 100;
 	int gy = SCREEN_HEIGHT / 2 - gH / 2;
 	int bW = 86, bH = 50;
-	int bx = px + 24;
+	int bx = px;
 	int by = py;
 
 	//Setup the clips for our image
@@ -295,9 +296,9 @@ int main(int, char**){
 		}
 		by = py + pH/2 - bH/2;
 		if (pFaceRight) {
-			bx = px + pW;
+			bx = px + 10;
 		} else {
-			bx = px - bW + pW;
+			bx = px - bW + pW - 10;
 		}
 		renderTexture(beam, renderer, bx, by, &bclips[bClip]);
 		//Update the screen
