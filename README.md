@@ -14,7 +14,9 @@ A description of CC-BY 3.0 and a link to the full license can be found at https:
 
 Build information
 
--Based on SDL. Generates a window and lets the user change a circle's color based on number key presses. Lets the user move a character using the arrow keys.
+-Based on SDL. 
+Generates a window and lets the user change a circle's color based on number key presses. 
+Lets the user move a character using the arrow keys and fire a beam of light with the space bar.
 
 -To run:
 Make sure SDL 2.0 and SDL_image 2.0 are installed, then modify the "SDL_INCLUDE" line in the Makefile to point to SDL 2.0 and to the include folder in this directory.
@@ -25,7 +27,7 @@ You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-ima
 
 User information
 
--Change the color of the circle by pressing 1 through 4. Move the girl around with the arrow keys. Hit Escape to exit, or just close the window.
+-Change the color of the circle by pressing 1 through 4. Move the girl around with the arrow keys. Shoot a beam of light with the space bar. Hit Escape to exit, or just close the window.
 
 -Feel free to visit here for updates on the project!
 
