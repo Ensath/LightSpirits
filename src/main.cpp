@@ -102,39 +102,40 @@ int main(int, char**){
 		SDL_Quit();
 		return 1;
 	}
+	SDL_Texture *background = loadTexture(resPath + "Full Moon - background.png", renderer);
 	SDL_Texture *player = loadTexture(resPath + "LayeredSprites.png", renderer);
 	SDL_Texture *grue = loadTexture(resPath + "Grue.png", renderer);
 	SDL_Texture *beam = loadTexture(resPath + "beams.png", renderer);
 
 	//iW and iH are the clip width and height
 	//We'll be drawing only clips so get a center position for the w/h of a clip
-	int iW = 100, iH = 100;
+/*	int iW = 100, iH = 100;
 	int x = SCREEN_WIDTH / 2 - iW / 2;
 	int y = SCREEN_HEIGHT / 2 - iH / 2;
-	int pW = 24, pH = 26;
+*/	int pW = 24, pH = 26;
 	int px = SCREEN_WIDTH / 2 - pW / 2 - 100;
-	int py = SCREEN_HEIGHT / 2 - pH / 2;
+	int py = SCREEN_HEIGHT - pH;
 	int pyinit = py;
 	int gW = 56, gH = 71;
 	int gx = SCREEN_WIDTH / 2 - gW / 2 + 100;
-	int gy = SCREEN_HEIGHT / 2 - gH / 2;
+	int gy = SCREEN_HEIGHT - gH;
 	int bW = 86, bH = 50;
 	int bx = px;
 	int by = py;
 
 	//Setup the clips for our image
-	SDL_Rect clips[4];
+	//SDL_Rect clips[4];
 	SDL_Rect pclips[18];
 	SDL_Rect gclips[4];
 	SDL_Rect bclips[2];
 	//Since our clips our uniform in size we can generate a list of their
 	//positions using some math (the specifics of this are covered in the lesson)
 	for (int i = 0; i < 4; ++i){
-		clips[i].x = i / 2 * iW;
+	/*	clips[i].x = i / 2 * iW;
 		clips[i].y = i % 2 * iH;
 		clips[i].w = iW;
 		clips[i].h = iH;
-		gclips[i].x = i % 2 * gW;
+	*/	gclips[i].x = i % 2 * gW;
 		gclips[i].y = i / 2 * gH;
 		gclips[i].w = gW;
 		gclips[i].h = gH;
@@ -154,7 +155,7 @@ int main(int, char**){
 	bclips[1].w = bW;
 	bclips[1].h = bH;
 	//Specify a default clip to start with
-	int useClip = 0;
+	//int useClip = 0;
 	int pClip = 2;
 	int gClip = 0;
 	int bClip = 0;
@@ -176,7 +177,7 @@ int main(int, char**){
 			//Use number input to select which clip should be drawn
 			if (e.type == SDL_KEYDOWN && e.key.repeat == 0){
 				switch (e.key.keysym.sym){
-					case SDLK_1:
+/*					case SDLK_1:
 					case SDLK_KP_1:
 						useClip = 0;
 						break;
@@ -192,7 +193,7 @@ int main(int, char**){
 					case SDLK_KP_4:
 						useClip = 3;
 						break;
-					case SDLK_UP:
+*/					case SDLK_UP:
 						pVelY -= 2;
 						break;
 					case SDLK_DOWN:
@@ -239,8 +240,10 @@ int main(int, char**){
 		}
 		//Rendering
 		SDL_RenderClear(renderer);
+		//Draw the background
+		renderTexture(background, renderer, -106, 0);
 		//Draw the image
-		renderTexture(image, renderer, x, y, &clips[useClip]);
+		//renderTexture(image, renderer, x, y, &clips[useClip]);
 		//Update position
 		px += pVelX;
 		py += pVelY;
@@ -305,7 +308,8 @@ int main(int, char**){
 		SDL_RenderPresent(renderer);
 	}
 	//Clean up
-	cleanup(image, renderer, window);
+	cleanup(background, renderer, window);
+	//cleanup(image, renderer, window);
 	cleanup(player, renderer, window);
 	cleanup(grue, renderer, window);
 	cleanup(beam, renderer, window);
