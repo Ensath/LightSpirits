@@ -20,11 +20,11 @@ Build information
 Generates a window and lets the user move a character using the arrow keys and fire a beam of light with the space bar.
 
 -To run:
-Make sure SDL 2.0 and SDL_image 2.0 are installed, then modify the "SDL_INCLUDE" line in the Makefile to point to SDL 2.0 and to the include folder in this directory.
-Then run "make clean", followed by "make".
+Make sure SDL 2.0 and SDL_image 2.0 are installed. 
+Go to the src directory, then run LightSpirits.
 You can install SDL 2.0 with the command "sudo apt-get install libsdl2-dev", or download it from https://www.libsdl.org/download-2.0.php. 
 You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-image-dev", or download it from https://www.libsdl.org/projects/SDL_image/.
-
+If you install SDL 2.0 to somewhere other than the default directory, please adjust "SDL_INCLUDE" line in the Makefile to point to its location.
 
 User information
 
