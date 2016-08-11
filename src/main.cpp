@@ -320,7 +320,12 @@ int main(int, char**){
 		if (beamActive) {
 			if(checkCollision(bx, by, bW, bH, gx, gy, gW, gH)){
 				gAlive = false;
+				gy = SCREEN_HEIGHT + 100;
 			}
+		}
+		if(checkCollision(px, py, pW, pH, gx, gy, gW, gH)){
+			px = 50;
+			py = pyinit;
 		}
 		//Update the screen
 		SDL_RenderPresent(renderer);
