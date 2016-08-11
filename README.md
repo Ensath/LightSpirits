@@ -12,9 +12,9 @@ The background uses "Background Night" art by Alekei, licensed under CC-BY 3.0.
 The other enemies (yet to be added) use the "16x16, 16x24, 32x32 rpg enemies--updated" sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
 
-Light Spirits
+#Light Spirits
 
-Build information
+##Build information
 
 -Based on SDL. 
 Generates a window and lets the user move a character using the arrow keys and fire a beam of light with the space bar.
@@ -26,7 +26,7 @@ You can install SDL 2.0 with the command "sudo apt-get install libsdl2-dev", or 
 You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-image-dev", or download it from https://www.libsdl.org/projects/SDL_image/.
 If you install SDL 2.0 to somewhere other than the default directory, please adjust "SDL_INCLUDE" line in the Makefile to point to its location.
 
-User information
+##User information
 
 -This is 2D game about a girl and a will-o'-the-wisp who fight creatures of darkness.
 
@@ -35,7 +35,7 @@ User information
 -Feel free to visit here for updates on the project!
 
 
-Project roadmap
+##Project roadmap
 
 -Generate display
 
@@ -52,6 +52,6 @@ Project roadmap
 -Write instructions for how to play
 
 
-Contact info
+###Contact info
 
 Email me at nfreed4 at gmail dot com.
