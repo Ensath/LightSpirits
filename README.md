@@ -39,7 +39,7 @@ If you install SDL 2.0 to somewhere other than the default directory, please adj
 
 ##User information
 
-Description: This is 2D game about a girl and a will-o'-the-wisp who fight creatures of darkness.
+Description: This is a 2D game about a girl and a will-o'-the-wisp who fight creatures of darkness.
 
 Controls: Move the girl around with the arrow keys. Shoot a beam of light with the space bar. Hit Escape to exit, or just close the window.
 
