@@ -48,3 +48,8 @@ Project roadmap
 -Proper interaction with enemies (deal and receive damage, hitstun)
 
 -Write instructions for how to play
+
+
+Contact info
+
+Email me at nfreed4 at gmail dot com.
