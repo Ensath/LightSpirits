@@ -12,6 +12,7 @@ The background uses "Background Night" art by Alekei, licensed under CC-BY 3.0.
 The other enemies (yet to be added) use the "16x16, 16x24, 32x32 rpg enemies--updated" sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
 
+Light Spirits
 
 Build information
 
@@ -27,10 +28,11 @@ You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-ima
 
 User information
 
+-This is 2D game about a girl and a will-o'-the-wisp who fight creatures of darkness.
+
 -Move the girl around with the arrow keys. Shoot a beam of light with the space bar. Hit Escape to exit, or just close the window.
 
 -Feel free to visit here for updates on the project!
-
 
 
 Project roadmap

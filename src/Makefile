@@ -7,7 +7,7 @@ CXX = g++
 # You may also need to update the linker option rpath, which sets where to look for
 # the SDL2 libraries at runtime to match your install
 SDL_LIB = -L/usr/local/lib -lSDL2 -Wl,-rpath=/usr/local/lib -lSDL2_image
-SDL_INCLUDE = -I/usr/include/SDL2 -I/home/noah/oss/LightSpirits/include
+SDL_INCLUDE = -I/usr/include/SDL2 -I/u/noah25/LightSpirits/include
 
 # You may need to change -std=c++11 to -std=c++0x if your compiler is a bit older
 CXXFLAGS = -Wall -c -std=c++11 $(SDL_INCLUDE)
