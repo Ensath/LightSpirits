@@ -72,6 +72,15 @@ void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y, SDL_Rect *
 	renderTexture(tex, ren, dst, clip);
 }
 
+bool checkCollision(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2) {
+	if(((x2 < x1)&&(x1 < x2 + w2))||((x2 < x1 + w1)&&(x1 + w1 < x2 + w2))||((x1 < x2)&&(x2 < x1 + w1))||((x1 < x2 + w2)&&(x2 + w2 < x1 + w1))){
+		if(((y2 < y1)&&(y1 < y2 + h2))||((y2 < y1 + h1)&&(y1+h1 < y2 + h2))||((y1 < y2)&&(y2 < y1 + h1))||((y1 < y2 + h2)&&(y2 + h2 < y1 + h1))){
+			return true;
+		}
+	}
+	return false;
+}
+
 int main(int, char**){
 	//Start up SDL and make sure it went ok
 	if (SDL_Init(SDL_INIT_VIDEO) != 0){
@@ -165,6 +174,7 @@ int main(int, char**){
 	bool pFaceRight = true;
 	bool pAerial = false;
 	bool beamActive = false;
+	bool gAlive = true;
 	int pVelX = 0;
 	int pVelY = 0;
 	int gVelX = 1;
@@ -289,8 +299,10 @@ int main(int, char**){
 			gVelX = -gVelX;
 			gClip = 0;
 		}
-		//Draw the grue
-		renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
+		//Draw the grue if alive
+		if (gAlive){
+			renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
+		}
 		//Draw the beam if active, positioned in front of the player
 		if (beamActive) {
 			bClip = 1;
@@ -304,6 +316,12 @@ int main(int, char**){
 			bx = px - bW + pW - 10;
 		}
 		renderTexture(beam, renderer, bx, by, &bclips[bClip]);
+		//Check collision, update state
+		if (beamActive) {
+			if(checkCollision(bx, by, bW, bH, gx, gy, gW, gH)){
+				gAlive = false;
+			}
+		}
 		//Update the screen
 		SDL_RenderPresent(renderer);
 	}
