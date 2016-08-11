@@ -4,12 +4,18 @@ This program is available under the "zlib license". Please see the file COPYING.
 
 This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check it out at http://www.willusher.io/pages/sdl2/.
 
-Sprites for this program found on opengameart.org. 
+Sprites for this program found on opengameart.org:
+
 The player character uses the "Margery Limited" sprite set by software_atelier.
+
 The main enemy uses the "Grue" sprite set by Jesse McCarthy, licensed under CC-BY 3.0.
+
 The light beam attack uses the "Lasers and beams" art by Rawdanitsu.
+
 The background uses "Background Night" art by Alekei, licensed under CC-BY 3.0.
+
 The other enemies (yet to be added) use the "16x16, 16x24, 32x32 rpg enemies--updated" sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
+
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
 
 #Light Spirits
@@ -23,6 +29,8 @@ Generates a window and lets the user move a character using the arrow keys and f
 
 - Make sure SDL 2.0 and SDL_image 2.0 are installed. 
 
+- Download and unzip this repository.
+
 - Go to the src directory, then run LightSpirits.
 
 You can install SDL 2.0 with the command "sudo apt-get install libsdl2-dev", or download it from https://www.libsdl.org/download-2.0.php. 
@@ -31,12 +39,11 @@ If you install SDL 2.0 to somewhere other than the default directory, please adj
 
 ##User information
 
-- This is 2D game about a girl and a will-o'-the-wisp who fight creatures of darkness.
+Description: This is 2D game about a girl and a will-o'-the-wisp who fight creatures of darkness.
 
-- Move the girl around with the arrow keys. Shoot a beam of light with the space bar. Hit Escape to exit, or just close the window.
+Controls: Move the girl around with the arrow keys. Shoot a beam of light with the space bar. Hit Escape to exit, or just close the window.
 
-- Feel free to visit here for updates on the project!
-
+More info: Feel free to visit here for updates on the project!
 
 ##Project roadmap
 
@@ -53,7 +60,6 @@ If you install SDL 2.0 to somewhere other than the default directory, please adj
 - [ ] Proper interaction with enemies (deal and receive damage, hitstun)
 
 - [x] Write instructions for how to play
-
 
 ###Contact info
 
