@@ -6,15 +6,15 @@ This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check 
 
 Sprites and other images for this program found on http://opengameart.org:
 
-- The player character uses the "Margery Limited" sprite set by software_atelier.
+- The player character uses the ["Margery Limited"](http://opengameart.org/content/margery-limited) sprite set by software_atelier.
 
-- The main enemy uses the "Grue" sprite set by Jesse McCarthy, licensed under CC-BY 3.0.
+- The main enemy uses the ["Grue"](http://opengameart.org/content/grue) sprite set by Jesse McCarthy, licensed under CC-BY 3.0.
 
-- The light beam attack uses the "Lasers and beams" art by Rawdanitsu.
+- The light beam attack uses the ["Lasers and beams"](http://opengameart.org/content/lasers-and-beams) art by Rawdanitsu.
 
-- The background uses "Background Night" art by Alekei, licensed under CC-BY 3.0.
+- The background uses ["Background Night"](http://opengameart.org/content/background-night) art by Alekei, licensed under CC-BY 3.0.
 
-- The other enemies (yet to be added) use the "16x16, 16x24, 32x32 rpg enemies--updated" sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
+- The other enemies (yet to be added) use the ["16x16, 16x24, 32x32 rpg enemies--updated"](http://opengameart.org/content/16x16-16x24-32x32-rpg-enemies-updated) sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
 
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
 
