@@ -82,6 +82,8 @@ More info: Feel free to visit here for updates on the project!
 
 - [ ] Have larger, scrolling level
 
+- [ ] Health display/indicator
+
 ##Contact info
 
 Email me at nfreed4 at gmail dot com.
