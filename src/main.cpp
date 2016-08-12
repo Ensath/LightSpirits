@@ -115,6 +115,7 @@ int main(int, char**){
 	SDL_Texture *player = loadTexture(resPath + "LayeredSprites.png", renderer);
 	SDL_Texture *grue = loadTexture(resPath + "Grue.png", renderer);
 	SDL_Texture *beam = loadTexture(resPath + "beams.png", renderer);
+	SDL_Texture *beamr = loadTexture(resPath + "beams2.png", renderer);
 	SDL_Texture *wisp = loadTexture(resPath + "Wisp.png", renderer);
 
 	//iW and iH are the clip width and height
@@ -140,6 +141,7 @@ int main(int, char**){
 	SDL_Rect pclips[18];
 	SDL_Rect gclips[4];
 	SDL_Rect bclips[2];
+	SDL_Rect brclips[2];
 	//Since our clips our uniform in size we can generate a list of their
 	//positions using some math (the specifics of this are covered in the lesson)
 	for (int i = 0; i < 4; ++i){
@@ -163,14 +165,23 @@ int main(int, char**){
 	bclips[0].w = 0;
 	bclips[0].h = 0;
 	bclips[1].x = 360;
-	bclips[1].y = 235;
+	bclips[1].y = 236;
 	bclips[1].w = bW;
 	bclips[1].h = bH;
+	brclips[0].x = 0;
+	brclips[0].y = 0;
+	brclips[0].w = 0;
+	brclips[0].h = 0;
+	brclips[1].x = 0;
+	brclips[1].y = 206;
+	brclips[1].w = bW;
+	brclips[1].h = bH;
 	//Specify a default clip to start with
 	//int useClip = 0;
 	int pClip = 2;
 	int gClip = 0;
 	int bClip = 0;
+	int brClip = 0;
 
 	SDL_Event e;
 	bool quit = false;
@@ -348,17 +359,25 @@ int main(int, char**){
 		}
 		//Draw the beam if active, positioned in front of the player
 		if (beamActive) {
-			bClip = 1;
+			if (pFaceRight) {
+				bClip = 0;
+				brClip = 1;
+			} else {
+				bClip = 1;
+				brClip = 0;
+			}
 		} else {
 			bClip = 0;
+			brClip = 0;
 		}
 		by = py + pH/2 - bH/2;
 		if (pFaceRight) {
 			bx = px + 10;
 		} else {
-			bx = px - bW + pW - 10;
+			bx = px - bW + pW - 8;
 		}
 		renderTexture(beam, renderer, bx, by, &bclips[bClip]);
+		renderTexture(beamr, renderer, bx, by, &brclips[brClip]);
 		//Check collision, update state
 		if (beamActive) {
 			if(checkCollision(bx, by, bW, bH, gx, gy, gW, gH)){
