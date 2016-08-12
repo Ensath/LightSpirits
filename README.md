@@ -14,6 +14,8 @@ Sprites and other images for this program found on http://opengameart.org:
 
 - The background uses ["Background Night"](http://opengameart.org/content/background-night) art by Alekei, licensed under CC-BY 3.0.
 
+- The ground uses the ["Dirt Platformer Tiles"](http://opengameart.org/content/dirt-platformer-tiles) tile set by Lanea Zimmerman, licensed under CC-BY 3.0.
+
 - The other enemies (yet to be added) use the ["16x16, 16x24, 32x32 rpg enemies--updated"](http://opengameart.org/content/16x16-16x24-32x32-rpg-enemies-updated) sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
 
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
@@ -49,19 +51,33 @@ More info: Feel free to visit here for updates on the project!
 
 ##Project roadmap
 
+###Initial map
+
 - [x] Generate display
 
 - [x] Allow movement based on keyboard input (left, right, jump)
 
-- [ ] Find/create appropriate sprites for playable characters, enemies, and terrain
+- [x] Find/create appropriate sprites for playable characters, enemies, and terrain
 
-- [ ] Proper interaction with terrain
+- [x] Proper interaction with terrain
+
+-Note: currently just level ground, plan to add walls and platforms
 
 - [x] Allow attacks based on keyboard input
 
 - [ ] Proper interaction with enemies (deal and receive damage, hitstun)
 
 - [x] Write instructions for how to play
+
+###Extended map
+
+- [ ] Additional enemies
+
+- [ ] Physics based on acceleration (currently based on velocity)
+
+- [ ] Implement running animation
+
+- [ ] Have larger, scrolling level
 
 ##Contact info
 

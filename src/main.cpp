@@ -104,37 +104,40 @@ int main(int, char**){
 		return 1;
 	}
 	const std::string resPath = getResourcePath("images");
-	SDL_Texture *image = loadTexture(resPath + "image.png", renderer);
+	/*SDL_Texture *image = loadTexture(resPath + "image.png", renderer);
 	if (image == nullptr){
 		cleanup(image, renderer, window);
 		IMG_Quit();
 		SDL_Quit();
 		return 1;
-	}
+	}*/
 	SDL_Texture *background = loadTexture(resPath + "Full Moon - background.png", renderer);
 	SDL_Texture *player = loadTexture(resPath + "LayeredSprites.png", renderer);
 	SDL_Texture *grue = loadTexture(resPath + "Grue.png", renderer);
 	SDL_Texture *beam = loadTexture(resPath + "beams.png", renderer);
 	SDL_Texture *beamr = loadTexture(resPath + "beams2.png", renderer);
 	SDL_Texture *wisp = loadTexture(resPath + "Wisp.png", renderer);
+	SDL_Texture *ground = loadTexture(resPath + "platformertiles.png", renderer);
 
 	//iW and iH are the clip width and height
 	//We'll be drawing only clips so get a center position for the w/h of a clip
 /*	int iW = 100, iH = 100;
 	int x = SCREEN_WIDTH / 2 - iW / 2;
-	int y = SCREEN_HEIGHT / 2 - iH / 2;
-*/	int pW = 24, pH = 26;
+	int y = SCREEN_HEIGHT / 2 - iH / 2;*/
+	int groundW = 32, groundH = 32;
+	int pW = 24, pH = 26;
 	int px = SCREEN_WIDTH / 2 - pW / 2 - 100;
-	int py = SCREEN_HEIGHT - pH;
+	int py = SCREEN_HEIGHT - pH - groundH;
 	int pyinit = py;
 	int gW = 56, gH = 71;
 	int gx = SCREEN_WIDTH / 2 - gW / 2 + 100;
-	int gy = SCREEN_HEIGHT - gH;
+	int gy = SCREEN_HEIGHT - gH - groundH - 5;
 	int bW = 86, bH = 50;
 	int bx = px;
 	int by = py;
 	int wx = px-5;
 	int wy = py-5;
+
 
 	//Setup the clips for our image
 	//SDL_Rect clips[4];
@@ -142,6 +145,7 @@ int main(int, char**){
 	SDL_Rect gclips[4];
 	SDL_Rect bclips[2];
 	SDL_Rect brclips[2];
+	SDL_Rect groundclips[1];
 	//Since our clips our uniform in size we can generate a list of their
 	//positions using some math (the specifics of this are covered in the lesson)
 	for (int i = 0; i < 4; ++i){
@@ -176,12 +180,17 @@ int main(int, char**){
 	brclips[1].y = 206;
 	brclips[1].w = bW;
 	brclips[1].h = bH;
+	groundclips[0].x = 32;
+	groundclips[0].y = 0;
+	groundclips[0].w = groundW;
+	groundclips[0].h = groundH;
 	//Specify a default clip to start with
 	//int useClip = 0;
 	int pClip = 2;
 	int gClip = 0;
 	int bClip = 0;
 	int brClip = 0;
+	int groundClip = 0;
 
 	SDL_Event e;
 	bool quit = false;
@@ -379,6 +388,10 @@ int main(int, char**){
 		}
 		renderTexture(beam, renderer, bx, by, &bclips[bClip]);
 		renderTexture(beamr, renderer, bx, by, &brclips[brClip]);
+		//Draw the ground
+		for (int groundx = 0; groundx < SCREEN_WIDTH; groundx += groundW){
+			renderTexture(ground, renderer, groundx, SCREEN_HEIGHT - groundH, &groundclips[groundClip]);
+		}
 		//Check collision, update state
 		if (beamActive) {
 			if(checkCollision(bx, by, bW, bH, gx, gy, gW, gH)){
@@ -405,6 +418,9 @@ int main(int, char**){
 	cleanup(player, renderer, window);
 	cleanup(grue, renderer, window);
 	cleanup(beam, renderer, window);
+	cleanup(beamr, renderer, window);
+	cleanup(wisp, renderer, window);
+	cleanup(ground, renderer, window);
 	IMG_Quit();
 	SDL_Quit();
 
