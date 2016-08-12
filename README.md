@@ -33,7 +33,7 @@ Generates a window and lets the user move a character using the arrow keys and f
 
 - Download and unzip this repository.
 
-- Go to the src directory, perform "make clean", then "make", then run LightSpirits.
+- Go to the src directory, perform "make", then run LightSpirits.
 
 You can install SDL 2.0 with the command "sudo apt-get install libsdl2-dev", or download it from https://www.libsdl.org/download-2.0.php. 
 You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-image-dev", or download it from https://www.libsdl.org/projects/SDL_image/.
