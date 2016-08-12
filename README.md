@@ -7,7 +7,7 @@ This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check 
 Sprites and other images for this program found on http://opengameart.org:
 
 - The player character uses the ["Margery Limited"](http://opengameart.org/content/margery-limited) sprite set by software_atelier.
-
+ 
 - The main enemy uses the ["Grue"](http://opengameart.org/content/grue) sprite set by Jesse McCarthy, licensed under CC-BY 3.0.
 
 - The light beam attack uses the ["Lasers and beams"](http://opengameart.org/content/lasers-and-beams) art by Rawdanitsu.
@@ -26,7 +26,7 @@ I made the sprite for the wisp.
 
 ##Build information
 
-Based on SDL. 
+Based on SDL and written in C++. 
 Generates a window and lets the user move a character using the arrow keys and fire a beam of light with the space bar.
 
 ###To run on Linux:
@@ -61,7 +61,7 @@ More info: Feel free to visit here for updates on the project!
 
 - [x] Proper interaction with terrain
 
--Note: currently just level ground, plan to add walls and platforms
+- Currently just level ground, plan to add walls and platforms
 
 - [x] Allow attacks based on keyboard input
 
@@ -73,7 +73,8 @@ More info: Feel free to visit here for updates on the project!
 
 - [ ] Additional enemies
 
-- [ ] Physics based on acceleration (currently based on velocity)
+- [ ] Physics based on acceleration
+- Currently based on velocity
 
 - [ ] Implement running animation
 
