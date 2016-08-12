@@ -294,15 +294,15 @@ int main(int, char**){
 		if (py > pyinit) {
 			py = pyinit;
 		}
-		//Avoid leaving the window
-		if (px < 0) {
-			px = 0;
+		//Avoid going too far outside the window
+		if (px < -pW) {
+			px = -pW;
 		}
-		if (py < 0) {
-			py = 0;
+		if (py < -pH) {
+			py = -pH;
 		}
-		if (px + pW > SCREEN_WIDTH) {
-			px = SCREEN_WIDTH - pW;
+		if (px > SCREEN_WIDTH) {
+			px = SCREEN_WIDTH;
 		}
 		//Identify position and facing
 		if (pVelX > 0) {

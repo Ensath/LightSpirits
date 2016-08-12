@@ -65,7 +65,9 @@ More info: Feel free to visit here for updates on the project!
 
 - [x] Allow attacks based on keyboard input
 
-- [ ] Proper interaction with enemies (deal and receive damage, hitstun)
+- [x] Proper interaction with enemies (deal and receive damage, hitstun)
+
+- No hitstun, but included invulnerability frames
 
 - [x] Write instructions for how to play
 
