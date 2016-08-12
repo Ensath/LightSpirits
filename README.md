@@ -18,6 +18,8 @@ Sprites and other images for this program found on http://opengameart.org:
 
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
 
+I made the sprite for the wisp.
+
 #Light Spirits
 
 ##Build information
