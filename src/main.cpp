@@ -203,6 +203,7 @@ int main(int, char**){
 	int gVelX = 1;
 	int wCycle = 0;
 	int wCycleY = 0;
+	float pHealth = 1;
 	unsigned int lastTime = 0, currentTime;
 	while (!quit){
 		//Event Polling
@@ -400,8 +401,14 @@ int main(int, char**){
 			}
 		}
 		if(checkCollision(px, py, pW, pH, gx, gy, gW, gH)){
-			px = 50;
-			py = pyinit;
+			if (pHealth > 0) {
+				pHealth -= 0.01;
+//				SDL_SetWindowBrightness(window, pHealth);
+			} else {
+				px = 50;
+				py = pyinit;
+				pHealth = 1;
+			}
 		}
 		//Update the screen
 		SDL_RenderPresent(renderer);
