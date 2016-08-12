@@ -27,13 +27,13 @@ I made the sprite for the wisp.
 Based on SDL. 
 Generates a window and lets the user move a character using the arrow keys and fire a beam of light with the space bar.
 
-###To run:
+###To run on Linux:
 
 - Make sure SDL 2.0 and SDL_image 2.0 are installed. 
 
 - Download and unzip this repository.
 
-- Go to the src directory, then run LightSpirits.
+- Go to the src directory, perform "make clean", then "make", then run LightSpirits.
 
 You can install SDL 2.0 with the command "sudo apt-get install libsdl2-dev", or download it from https://www.libsdl.org/download-2.0.php. 
 You can install SDL_image 2.0 with the command "sudo apt-get install libsdl2-image-dev", or download it from https://www.libsdl.org/projects/SDL_image/.
