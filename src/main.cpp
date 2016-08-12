@@ -198,12 +198,16 @@ int main(int, char**){
 	bool pAerial = false;
 	bool beamActive = false;
 	bool gAlive = true;
+	bool pDraw = true;
 	int pVelX = 0;
 	int pVelY = 0;
 	int gVelX = 1;
 	int wCycle = 0;
 	int wCycleY = 0;
-	float pHealth = 1;
+	int pHealth = 4;
+	int pInvuln = 0;
+	int gHealth = 4;
+	int gInvuln = 0;
 	unsigned int lastTime = 0, currentTime;
 	while (!quit){
 		//Event Polling
@@ -314,8 +318,20 @@ int main(int, char**){
 				pClip = 0;
 			}
 		}
+		//Check invulnerability
+		if (pInvuln > 0) {
+			pInvuln--;
+			if ((pInvuln % 30) >= 15) {
+				pDraw = false;
+			}
+			else {
+				pDraw = true;
+			}
+		}
 		//Draw the player
-		renderTexture(player, renderer, px, py, &pclips[pClip]);
+		if (pDraw) {
+			renderTexture(player, renderer, px, py, &pclips[pClip]);
+		}
 		//Move and draw wisp
 		if (px > wx + 10) {
 			wx++;
@@ -364,6 +380,14 @@ int main(int, char**){
 			gVelX = -gVelX;
 			gClip = 0;
 		}
+                if (gInvuln > 0) {
+                        gInvuln--;
+                        if ((gInvuln % 30) >= 15) {
+                                gAlive = false;
+                        } else {
+				gAlive = true;
+			}
+                }
 		//Draw the grue if alive
 		if (gAlive){
 			renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
@@ -395,19 +419,24 @@ int main(int, char**){
 		}
 		//Check collision, update state
 		if (beamActive) {
-			if(checkCollision(bx, by, bW, bH, gx, gy, gW, gH)){
-				gAlive = false;
-				gy = SCREEN_HEIGHT + 100;
+			if(checkCollision(bx, by, bW, bH, gx, gy, gW, gH)&&gInvuln == 0){
+				gHealth--;
+				if (gHealth > 0) {
+					gInvuln = 120;
+				}
+				if (gHealth <= 0) {
+					gAlive = false;
+					gy = SCREEN_HEIGHT + 100;
+				}
 			}
 		}
-		if(checkCollision(px, py, pW, pH, gx, gy, gW, gH)){
-			if (pHealth > 0) {
-				pHealth -= 0.01;
-//				SDL_SetWindowBrightness(window, pHealth);
-			} else {
+		if(checkCollision(px, py, pW, pH, gx, gy, gW, gH)&&pInvuln == 0){
+			pHealth -= 1;
+			pInvuln = 120;
+			if (pHealth <= 0) {
 				px = 50;
 				py = pyinit;
-				pHealth = 1;
+				pHealth = 4;
 			}
 		}
 		//Update the screen
