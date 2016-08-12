@@ -194,6 +194,7 @@ int main(int, char**){
 	int gVelX = 1;
 	int wCycle = 0;
 	int wCycleY = 0;
+	unsigned int lastTime = 0, currentTime;
 	while (!quit){
 		//Event Polling
 		while (SDL_PollEvent(&e)){
@@ -391,6 +392,12 @@ int main(int, char**){
 		}
 		//Update the screen
 		SDL_RenderPresent(renderer);
+		//Cap the framerate to around 120 FPS
+		currentTime = SDL_GetTicks();
+		while (currentTime < lastTime + 8) {
+			currentTime = SDL_GetTicks();
+		}
+		lastTime = currentTime;
 	}
 	//Clean up
 	cleanup(background, renderer, window);
