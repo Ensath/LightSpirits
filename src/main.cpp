@@ -115,6 +115,7 @@ int main(int, char**){
 	SDL_Texture *player = loadTexture(resPath + "LayeredSprites.png", renderer);
 	SDL_Texture *grue = loadTexture(resPath + "Grue.png", renderer);
 	SDL_Texture *beam = loadTexture(resPath + "beams.png", renderer);
+	SDL_Texture *wisp = loadTexture(resPath + "Wisp.png", renderer);
 
 	//iW and iH are the clip width and height
 	//We'll be drawing only clips so get a center position for the w/h of a clip
@@ -131,6 +132,8 @@ int main(int, char**){
 	int bW = 86, bH = 50;
 	int bx = px;
 	int by = py;
+	int wx = px-5;
+	int wy = py-5;
 
 	//Setup the clips for our image
 	//SDL_Rect clips[4];
@@ -178,6 +181,8 @@ int main(int, char**){
 	int pVelX = 0;
 	int pVelY = 0;
 	int gVelX = 1;
+	int wCycle = 0;
+	int wCycleY = 0;
 	while (!quit){
 		//Event Polling
 		while (SDL_PollEvent(&e)){
@@ -289,6 +294,44 @@ int main(int, char**){
 		}
 		//Draw the player
 		renderTexture(player, renderer, px, py, &pclips[pClip]);
+		//Move and draw wisp
+		if (px > wx + 10) {
+			wx++;
+		} else if (px + pW < wx - 5) {
+			wx--;
+		}
+		if (py > wy + 5) {
+			wy++;
+		} else if (py < wy - 5) {
+			wy--;
+		}
+		if (wCycle < 450) {
+			if (wCycle % 12 == 0) {
+				wx++;
+			}
+		} else {
+			if (wCycle % 12 == 0 && wCycle > 900 && wCycle < 1350) {
+				wx--;
+			}
+			if (wCycle > 1800) {
+				wCycle = 0;
+			}
+		}
+		wCycle++;
+		if (wCycleY < 150) {
+			if (wCycleY % 30 == 0) {
+				wy++;
+			}
+		} else {
+			if (wCycleY % 30 == 0) {
+				wy--;
+			}
+			if (wCycleY > 300) {
+				wCycleY = 0;
+			}
+		}
+		wCycleY++;
+		renderTexture(wisp, renderer, wx, wy);
 		//Update grue position, direction
 		gx += gVelX;
 		if (gx > 500) { 
