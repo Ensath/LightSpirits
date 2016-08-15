@@ -343,16 +343,6 @@ int main(int, char**){
 			renderTexture(player, renderer, px, py, &pclips[pClip]);
 		}
 		//Move and draw wisp
-		if (px > wx + 10) {
-			wx++;
-		} else if (px + pW < wx - 5) {
-			wx--;
-		}
-		if (py > wy + 5) {
-			wy++;
-		} else if (py < wy - 5) {
-			wy--;
-		}
 		if (wCycle < 450) {
 			if (wCycle % 12 == 0) {
 				wx++;
@@ -379,6 +369,16 @@ int main(int, char**){
 			}
 		}
 		wCycleY++;
+		if (px > wx + 10) {
+			wx++;
+		} else if (px + pW < wx - 5) {
+			wx--;
+		}
+		if (py > wy + 5) {
+			wy++;
+		} else if (py < wy - 5) {
+			wy--;
+		}
 		renderTexture(wisp, renderer, wx, wy);
 		//Update grue position, direction
 		gx += gVelX;
