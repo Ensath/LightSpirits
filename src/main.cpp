@@ -208,6 +208,7 @@ int main(int, char**){
 	int pInvuln = 0;
 	int gHealth = 4;
 	int gInvuln = 0;
+	int beamCooldown = 0;
 	unsigned int lastTime = 0, currentTime;
 	while (!quit){
 		//Event Polling
@@ -250,7 +251,9 @@ int main(int, char**){
 						pVelX += 1;
 						break;
 					case SDLK_SPACE:
-						beamActive = true;
+						if(beamCooldown <= 0) {
+							beamCooldown = 120;
+						}
 						break;
 					case SDLK_ESCAPE:
 						quit = true;
@@ -273,9 +276,9 @@ int main(int, char**){
 					case SDLK_RIGHT:
 						pVelX -= 1;
 						break;
-					case SDLK_SPACE:
+					/*case SDLK_SPACE:
 						beamActive = false;
-						break;
+						break;*/
 				}
 			}
 		}
@@ -403,6 +406,14 @@ int main(int, char**){
 			renderTexture(grue, renderer, gx, gy, &gclips[gClip]);
 		}
 		//Draw the beam if active, positioned in front of the player
+		if (beamCooldown > 60) {
+			beamActive = true;
+		} else {
+			beamActive = false;
+		}
+		if (beamCooldown > 0) {
+			beamCooldown--;
+		}
 		if (beamActive) {
 			if (pFaceRight) {
 				bClip = 0;
