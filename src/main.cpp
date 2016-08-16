@@ -208,6 +208,7 @@ int main(int, char**){
 	int pInvuln = 0;
 	int gHealth = 4;
 	int gInvuln = 0;
+	int blinkCycle = 0;
 	unsigned int lastTime = 0, currentTime;
 	while (!quit){
 		//Event Polling
@@ -336,6 +337,16 @@ int main(int, char**){
 			}
 			else {
 				pDraw = true;
+			}
+		}
+		//Blink
+		blinkCycle++;
+		if(blinkCycle > 468) {
+			if (pClip == 0 || pClip == 2) {
+				pClip++;
+			}
+			if (blinkCycle > 480) {
+				blinkCycle = 0;
 			}
 		}
 		//Draw the player
