@@ -2,7 +2,9 @@ Copyright (c) 2016 Noah Freed
 
 This program is available under the "zlib license". Please see the file COPYING.
 
-This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check it out at http://www.willusher.io/pages/sdl2/.
+This program uses SDL 2.0, which is licensed under the [zlib license](https://www.libsdl.org/license.php).
+
+This program uses code from Will Usher's TwinklebearDev SDL 2.0 tutorial. Check it out at http://www.willusher.io/pages/sdl2/. The code is licensed under the [MIT License](https://github.com/Twinklebear/TwinklebearDev-Lessons/blob/master/LICENSE.md).
 
 Sprites and other images for this program found on http://opengameart.org:
 
