@@ -18,6 +18,8 @@ Sprites and other images for this program found on http://opengameart.org:
 
 - The ground uses the ["Dirt Platformer Tiles"](http://opengameart.org/content/dirt-platformer-tiles) tile set by Lanea Zimmerman, licensed under CC-BY 3.0.
 
+- The health display uses the ["Pixel Hearts"](http://opengameart.org/content/pixel-hearts) sprite set by TokyoGeisha, available in the public domain.
+
 - The other enemies (yet to be added) use the ["16x16, 16x24, 32x32 rpg enemies--updated"](http://opengameart.org/content/16x16-16x24-32x32-rpg-enemies-updated) sprite set by Stephen "Redshrike" Challener, licensed under CC-BY 3.0.
 
 A description of CC-BY 3.0 and a link to the full license can be found at https://creativecommons.org/licenses/by/3.0/.
@@ -84,7 +86,7 @@ More info: Feel free to visit here for updates on the project!
 
 - [ ] Have larger, scrolling level
 
-- [ ] Health display/indicator
+- [x] Health display/indicator
 
 ##Contact info
 

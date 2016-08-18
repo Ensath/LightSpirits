@@ -118,6 +118,7 @@ int main(int, char**){
 	SDL_Texture *beamr = loadTexture(resPath + "beams2.png", renderer);
 	SDL_Texture *wisp = loadTexture(resPath + "Wisp.png", renderer);
 	SDL_Texture *ground = loadTexture(resPath + "platformertiles.png", renderer);
+	SDL_Texture *heart = loadTexture(resPath + "HeartsResized.png", renderer);
 
 	//iW and iH are the clip width and height
 	//We'll be drawing only clips so get a center position for the w/h of a clip
@@ -137,6 +138,7 @@ int main(int, char**){
 	int by = py;
 	int wx = px-5;
 	int wy = py-5;
+	int heartW = 18, heartH = 16;
 
 
 	//Setup the clips for our image
@@ -146,6 +148,7 @@ int main(int, char**){
 	SDL_Rect bclips[2];
 	SDL_Rect brclips[2];
 	SDL_Rect groundclips[1];
+	SDL_Rect heartclips[3];
 	//Since our clips our uniform in size we can generate a list of their
 	//positions using some math (the specifics of this are covered in the lesson)
 	for (int i = 0; i < 4; ++i){
@@ -184,6 +187,12 @@ int main(int, char**){
 	groundclips[0].y = 0;
 	groundclips[0].w = groundW;
 	groundclips[0].h = groundH;
+	for (int i = 0; i < 3; i++) {
+		heartclips[i].x = (heartW + 1) * i;
+		heartclips[i].y = 0;
+		heartclips[i].w = heartW;
+		heartclips[i].h = heartH;
+	}
 	//Specify a default clip to start with
 	//int useClip = 0;
 	int pClip = 2;
@@ -437,6 +446,14 @@ int main(int, char**){
 		//Draw the ground
 		for (int groundx = 0; groundx < SCREEN_WIDTH; groundx += groundW){
 			renderTexture(ground, renderer, groundx, SCREEN_HEIGHT - groundH, &groundclips[groundClip]);
+		}
+		//Draw the player's health
+		for (int i = 0; i < 4; i++) {
+			if (i < pHealth) {
+				renderTexture(heart, renderer, i*(heartW+4)+8, 4, &heartclips[0]);
+			} else {
+				renderTexture(heart, renderer, i*(heartW+4)+8, 4, &heartclips[2]);
+			}
 		}
 		//Check collision, update state
 		if (beamActive) {
