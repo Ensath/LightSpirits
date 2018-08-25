@@ -127,8 +127,8 @@ int main(int, char**){
 	int y = SCREEN_HEIGHT / 2 - iH / 2;*/
 	int groundW = 32, groundH = 32;
 	int pW = 24, pH = 26;
-	int px = SCREEN_WIDTH / 2 - pW / 2 - 100;
-	int py = SCREEN_HEIGHT - pH - groundH;
+	float px = SCREEN_WIDTH / 2 - pW / 2 - 100;
+	float py = SCREEN_HEIGHT - pH - groundH;
 	int pyinit = py;
 	int gW = 56, gH = 71;
 	int gx = SCREEN_WIDTH / 2 - gW / 2 + 100;
@@ -208,8 +208,10 @@ int main(int, char**){
 	bool beamActive = false;
 	bool gAlive = true;
 	bool pDraw = true;
-	int pVelX = 0;
-	int pVelY = 0;
+	float pVelX = 0;
+	float pVelY = 0;
+	float pAccX = 0;
+	float pAccY = 0;
 	int gVelX = 1;
 	int wCycle = 0;
 	int wCycleY = 0;
@@ -245,19 +247,23 @@ int main(int, char**){
 						useClip = 3;
 						break;
 */					case SDLK_UP:
-						pVelY -= 2;
+						pAccY -= .1;
+						if(!pAerial){ 
+							pAccY -= .2;
+							pVelY = -2;
+						}
 						break;
 					case SDLK_DOWN:
-						pVelY += 1;
+						pAccY += .1;
 						if (py >= pyinit) { pAerial = false;}
 						break;
 					case SDLK_LEFT:
 						pFaceRight = false;
-						pVelX -= 1;
+						pAccX -= .1;
 						break;
 					case SDLK_RIGHT:
 						pFaceRight = true;
-						pVelX += 1;
+						pAccX += .1;
 						break;
 					case SDLK_SPACE:
 						beamActive = true;
@@ -272,16 +278,16 @@ int main(int, char**){
 			else if (e.type == SDL_KEYUP && e.key.repeat == 0){
 				switch (e.key.keysym.sym){
 					case SDLK_UP:
-						pVelY += 2;
+						pAccY += .1;
 						break;
 					case SDLK_DOWN:
-						pVelY -= 1;
+						pAccY -= .1;
 						break;
 					case SDLK_LEFT:
-						pVelX += 1;
+						pAccX += .1;
 						break;
 					case SDLK_RIGHT:
-						pVelX -= 1;
+						pAccX -= .1;
 						break;
 					case SDLK_SPACE:
 						beamActive = false;
@@ -295,14 +301,54 @@ int main(int, char**){
 		renderTexture(background, renderer, -106, 0);
 		//Draw the image
 		//renderTexture(image, renderer, x, y, &clips[useClip]);
+		//Cap acceleration
+		float maxAcc = .2;
+		if(pAccX > maxAcc){
+			pAccX = maxAcc;
+		}
+		if(pAccX < -maxAcc){
+			pAccX = -maxAcc;
+		}
+		if(pAccY > maxAcc){
+			pAccY = maxAcc;
+		}
+		if(pAccY < -maxAcc){
+			pAccY = -maxAcc;
+		}
+		//Update velocity
+		pVelX += pAccX;
+		float maxVel = 2;
+		if(pVelX > maxVel){
+			pVelX = maxVel;
+		}
+		if(pVelX < -maxVel){
+			pVelX = -maxVel;
+		}
+		pVelY += pAccY;
+		if(pVelY > maxVel){
+			pVelY = maxVel;
+		}
+		if(pVelY < -maxVel){
+			pVelY = -maxVel;
+		}
 		//Update position
 		px += pVelX;
 		py += pVelY;
 		//Fall
-		py += 1;
+		pVelY += .15;
+		//Slow down
+		if(pVelX < 0){
+			pVelX += .05;
+		}
+		if(pVelX > 0.01){
+			pVelX -= .05;
+		}
 		//Avoid entering the ground
 		if (py > pyinit) {
 			py = pyinit;
+			if (pAccY > 0){
+				pAccY = 0;
+			}
 		}
 		//Avoid going too far outside the window
 		if (px < -pW) {

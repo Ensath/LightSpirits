@@ -79,8 +79,7 @@ More info: Feel free to visit here for updates on the project!
 
 - [ ] Additional enemies
 
-- [ ] Physics based on acceleration
-- Currently based on velocity
+- [x] Physics based on acceleration
 
 - [ ] Implement running animation
 
