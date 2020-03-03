@@ -339,9 +339,15 @@ int main(int, char**){
 		//Slow down
 		if(pVelX < 0){
 			pVelX += .05;
+			if(pVelX > 0){
+				pVelX = 0;
+			}
 		}
 		if(pVelX > 0.01){
 			pVelX -= .05;
+			if(pVelX < 0){
+				pVelX = 0;
+			}
 		}
 		//Avoid entering the ground
 		if (py > pyinit) {
